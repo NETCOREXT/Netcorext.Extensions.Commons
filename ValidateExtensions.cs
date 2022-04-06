@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 
@@ -19,11 +20,12 @@ public static class ValidateExtensions
     public static bool IsEmpty(this decimal source) => source == 0;
     public static bool IsEmpty([NotNullWhen(false)] this decimal? source) => source is null or 0;
     public static bool IsEmpty(this DateTime source) => source == default;
-    public static bool IsEmpty([NotNullWhen(false)] this DateTime? source) => source is null || source == DateTime.MinValue;
+    public static bool IsEmpty([NotNullWhen(false)] this DateTime? source) => source == null || source == DateTime.MinValue;
     public static bool IsEmpty(this DateTimeOffset source) => source == default;
-    public static bool IsEmpty([NotNullWhen(false)] this DateTimeOffset? source) => source is null || source == DateTimeOffset.MinValue;
+    public static bool IsEmpty([NotNullWhen(false)] this DateTimeOffset? source) => source == null || source == DateTimeOffset.MinValue;
     public static bool IsEmpty(this TimeSpan source) => source.TotalMilliseconds == 0;
-    public static bool IsEmpty([NotNullWhen(false)] this TimeSpan? source) => source is null || source.Value.TotalMilliseconds == 0;
+    public static bool IsEmpty([NotNullWhen(false)] this TimeSpan? source) => source == null || source.Value.TotalMilliseconds == 0;
+    public static bool IsEmpty<T>([NotNullWhen(false)] this IEnumerable<T>? source) => source == null || !source.Any();
 
     #endregion
 
@@ -39,6 +41,7 @@ public static class ValidateExtensions
     public static bool IsNull([NotNullWhen(false)] this DateTimeOffset? source) => source == null;
     public static bool IsNull([NotNullWhen(false)] this TimeSpan? source) => source == null;
     public static bool IsNull([NotNullWhen(false)] this object? source) => source == null;
+    public static bool IsNull<T>([NotNullWhen(false)] this IEnumerable<T>? source) => source == null;
 
     #endregion
 

@@ -8,39 +8,41 @@ public static class ValidateExtensions
 {
     #region IsEmpty
 
-    public static bool IsEmpty([NotNullWhen(false)] this string? source) => string.IsNullOrWhiteSpace(source);
-    public static bool IsEmpty(this int source) => source == 0;
-    public static bool IsEmpty([NotNullWhen(false)] this int? source) => source is null or 0;
-    public static bool IsEmpty(this long source) => source == 0;
-    public static bool IsEmpty([NotNullWhen(false)] this long? source) => source is null or 0;
-    public static bool IsEmpty(this double source) => source == 0;
-    public static bool IsEmpty([NotNullWhen(false)] this double? source) => source is null or 0;
-    public static bool IsEmpty(this float source) => source == 0;
-    public static bool IsEmpty([NotNullWhen(false)] this float? source) => source is null or 0;
-    public static bool IsEmpty(this decimal source) => source == 0;
-    public static bool IsEmpty([NotNullWhen(false)] this decimal? source) => source is null or 0;
-    public static bool IsEmpty(this DateTime source) => source == default;
     public static bool IsEmpty([NotNullWhen(false)] this DateTime? source) => source == null || source == DateTime.MinValue;
-    public static bool IsEmpty(this DateTimeOffset source) => source == default;
     public static bool IsEmpty([NotNullWhen(false)] this DateTimeOffset? source) => source == null || source == DateTimeOffset.MinValue;
-    public static bool IsEmpty(this TimeSpan source) => source.TotalMilliseconds == 0;
     public static bool IsEmpty([NotNullWhen(false)] this TimeSpan? source) => source == null || source.Value.TotalMilliseconds == 0;
+    public static bool IsEmpty([NotNullWhen(false)] this bool? source) => !source.HasValue;
+    public static bool IsEmpty([NotNullWhen(false)] this decimal? source) => source is null or 0;
+    public static bool IsEmpty([NotNullWhen(false)] this double? source) => source is null or 0;
+    public static bool IsEmpty([NotNullWhen(false)] this float? source) => source is null or 0;
+    public static bool IsEmpty([NotNullWhen(false)] this int? source) => source is null or 0;
+    public static bool IsEmpty([NotNullWhen(false)] this long? source) => source is null or 0;
+    public static bool IsEmpty([NotNullWhen(false)] this string? source) => string.IsNullOrWhiteSpace(source);
+    public static bool IsEmpty(this DateTime source) => source == default;
+    public static bool IsEmpty(this DateTimeOffset source) => source == default;
+    public static bool IsEmpty(this TimeSpan source) => source.TotalMilliseconds == 0;
+    public static bool IsEmpty(this decimal source) => source == 0;
+    public static bool IsEmpty(this double source) => source == 0;
+    public static bool IsEmpty(this float source) => source == 0;
+    public static bool IsEmpty(this int source) => source == 0;
+    public static bool IsEmpty(this long source) => source == 0;
     public static bool IsEmpty<T>([NotNullWhen(false)] this IEnumerable<T>? source) => source == null || !source.Any();
 
     #endregion
 
     #region IsNull
 
-    public static bool IsNull([NotNullWhen(false)] this string? source) => source == null;
-    public static bool IsNull([NotNullWhen(false)] this int? source) => source == null;
-    public static bool IsNull([NotNullWhen(false)] this long? source) => source == null;
-    public static bool IsNull([NotNullWhen(false)] this double? source) => source == null;
-    public static bool IsNull([NotNullWhen(false)] this float? source) => source == null;
-    public static bool IsNull([NotNullWhen(false)] this decimal? source) => source == null;
     public static bool IsNull([NotNullWhen(false)] this DateTime? source) => source == null;
     public static bool IsNull([NotNullWhen(false)] this DateTimeOffset? source) => source == null;
     public static bool IsNull([NotNullWhen(false)] this TimeSpan? source) => source == null;
+    public static bool IsNull([NotNullWhen(false)] this bool? source) => !source.HasValue;
+    public static bool IsNull([NotNullWhen(false)] this decimal? source) => source == null;
+    public static bool IsNull([NotNullWhen(false)] this double? source) => source == null;
+    public static bool IsNull([NotNullWhen(false)] this float? source) => source == null;
+    public static bool IsNull([NotNullWhen(false)] this int? source) => source == null;
+    public static bool IsNull([NotNullWhen(false)] this long? source) => source == null;
     public static bool IsNull([NotNullWhen(false)] this object? source) => source == null;
+    public static bool IsNull([NotNullWhen(false)] this string? source) => source == null;
     public static bool IsNull<T>([NotNullWhen(false)] this IEnumerable<T>? source) => source == null;
 
     #endregion

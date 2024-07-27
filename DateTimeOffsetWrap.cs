@@ -1,5 +1,6 @@
 namespace System;
 
+[Obsolete("Use DateTimeExtensions instead")]
 public static class DateTimeOffsetWrap
 {
     public static DateTimeOffset TaipeiNow => DateTimeOffset.UtcNow.ToOffset(TimeSpan.FromHours(8));
